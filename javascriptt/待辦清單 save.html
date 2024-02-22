@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(pink, rgb(102, 102, 255));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .block {
+            width: 1000px;
+            height: 600px;
+            background-color: aliceblue;
+            border-radius: 5px;
+            padding: 5px;
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .enter {
+            width: 100%;
+            padding: 0 0 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+        }
+
+        .enter input {
+            width: 860px;
+            height: 30px;
+            margin-left: 10px;
+        }
+
+        .title-list {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin-left: 6px;
+            gap: 5px;
+            position: relative;
+        }
+
+        .title {
+            width: 80px;
+            height: 40px;
+            border: 1px solid black;
+            border-radius: 5px 5px 0 0;
+            border: solid 0;
+            text-align: center;
+            line-height: 40px;
+            background-color: rgb(152, 137, 250);
+            cursor: pointer;
+        }
+
+        .title-bgc {
+            background-color: rgb(241, 178, 252);
+        }
+
+        .in-title {
+            height: 40px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-bottom: 1px dashed rgb(111, 111, 111);
+        }
+
+        .in-tool {
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .data-show {
+            width: 100%;
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: column;
+            padding: 10px;
+
+        }
+
+        .list {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .content-list {
+            position: relative;
+            gap: 5px;
+        }
+
+        .content {
+            border: 1px dashed rgb(111, 111, 111);
+            border-radius: 2px;
+            height: 510px;
+            overflow-y: overlay;
+        }
+
+        .set {
+            width: 100px;
+            height: 30px;
+            border-radius: 5px;
+            background: linear-gradient(pink, rgb(204, 176, 255));
+            border: solid 0;
+        }
+
+        .delete {
+            width: 100px;
+            height: 30px;
+            border-radius: 5px;
+            background: linear-gradient(pink, rgb(204, 176, 255));
+            border: solid 0;
+        }
+
+        .add-list {
+            width: 100px;
+            height: 30px;
+            border-radius: 5px;
+            background: linear-gradient(pink, rgb(204, 176, 255));
+            border: solid 0;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="block">
+        <div class="enter">
+            <input type="text" class="add-text">
+            <button class="add-list">新增</button>
+        </div>
+        <div class="title-list">
+            <div class="title title-bgc" id="all" data-title="all-data">全部</div>
+            <div class="title" id="do" data-title="do-data">已執行</div>
+            <div class="title" id="yet" data-title="yet-data">未執行</div>
+        </div>
+        <div class="content-list">
+            <div class="content" data-content="all-data">
+                <div class="in-title">
+                    <span>執行</span>
+                    <span>事項</span>
+                    <span>功能</span>
+                </div>
+                <div class="in-tool">
+                    <!-- <input type="checkbox" name="" id=""> -->
+                    <div class="data-show"></div>
+
+                    <!-- <div>
+                    <button class="set">編輯</button>
+                    <button class="delete">刪除</button>
+                </div> -->
+
+                </div>
+                <div class="save"></div>
+            </div>
+            <div class="content hidden" data-content="do-data"></div>
+            <div class="content hidden" data-content="yet-data"></div>
+        </div>
+    </div>
+
+
+
+    <script>
+        const dataShow = document.querySelector('.data-show');
+        const title = document.querySelectorAll('.title');
+
+        let arr = [
+            // {
+            //     id:1,
+            //     check:true,
+            //     text:'第一筆',
+            // },
+
+        ];
+        // output(arr);
+        if (localStorage.getItem('todoList')) {
+            arr = JSON.parse(localStorage.getItem('todoList'));
+        }
+
+        title.forEach((item) => {
+            item.addEventListener('click', () => {
+                // console.log(item.dataset.title);
+
+                const titleData = item.dataset.title;
+                switch (item.dataset.title) {
+                    case 'all-data':
+                        output(arr);
+
+                        titles.forEach((h) => {
+                            h.classList.remove('title-bgc')
+                        })
+                        item.classList.add('title-bgc');
+
+                        break;
+                    case 'do-data':
+                        titles.forEach((h) => {
+                            h.classList.remove('title-bgc')
+                        })
+                        item.classList.add('title-bgc');
+                        const todoArr = arr.filter((checkTodo) => {
+                            // console.log(checkTodo.check);
+                            if (checkTodo.check === true) {
+                                // console.log(checkTodo);
+                                return checkTodo;
+                            };
+                        });
+                        output(todoArr);
+                        break;
+                    case 'yet-data':
+                        titles.forEach((h) => {
+                            h.classList.remove('title-bgc')
+                        })
+                        item.classList.add('title-bgc');
+                        const notTodoArr = arr.filter((checkTodo) => {
+                            if (checkTodo.check !== true) {
+                                return checkTodo;
+                            }
+
+                        })
+                        output(notTodoArr);
+                        break;
+                    default:
+                        output(arr);
+                        break;
+                }
+            })
+        });
+
+        // output(arr);
+
+        const addList = document.querySelector('.add-list');
+        const addText = document.querySelector('.add-text');
+
+        addList.addEventListener('click', () => {
+            const text = addText.value;
+            // const id = arr[arr.length - 1].id;
+            const id = arr.length;
+            // console.log(id);
+            if (text != '') {
+                const addArr = {
+                    id: id + 1,
+                    check: false,
+                    text: text,
+                    // setText: '',
+                }
+                arr.push(addArr);
+            }
+            //  
+            output(arr);
+        })
+        // 編輯
+        function setText(id) {
+            // console.log(id);
+            arr.map((item) => {
+                if (item.id == id) {
+                    const content = prompt('編輯文字');
+                    if (content != '' || content == null) {
+                        item.text = content;
+                    }
+                    // console.log(content);
+                    // console.log(item);
+                }
+            })
+            output(arr);
+        }
+        // 刪除
+        function deleteText(id) {
+            if (confirm('真的要刪掉嗎?') == true) {
+                const deleteArr = arr.filter((item) => {
+                    if (item.id != id) {
+                        return item;
+                    }
+                });
+                arr = deleteArr;
+                output(deleteArr);
+                alert('瑞凡 我們回不去了!');
+            }
+
+        };
+        function checkList(id) {
+            // console.log(id);
+            arr.map((item) => {
+                // console.log(this);
+                if (item.id == id) {
+                    return item;
+                }
+            })
+        }
+
+        function checkTodo(id) {
+            arr.map((item) => {
+                if (item.id == id) {
+                    item.check = !item.check
+                }
+            })
+            output(arr);
+        };
+
+        //輸出的function 
+        function output(addArr) {
+            dataShow.innerHTML = ``;
+            addArr.forEach((item) => {
+                dataShow.innerHTML += `
+            <div class="list">
+                <input type="checkbox" ${item.check == true ? 'checked' : ''}  onclick= "checkTodo(${item.id})">
+                <span>${item.text}</span>
+                <div>
+                <button class="set" onclick = "setText(${item.id})">編輯</button>
+                <button class="delete" onclick = "deleteText(${item.id})">刪除</button>                    
+                </div>                
+            </div>
+
+                `;
+            });
+            // 製作成json格式才能儲存在local storge裡
+            const arrData = JSON.stringify(arr);
+            localStorage.setItem('todoList', arrData);
+            addText.value = '';
+        }
+        window.onload = function () {
+            const todoList = localStorage.getItem('todoList');
+            if (todoList) {
+                // 如果存在待辦事項列表，則將其轉換為 JavaScript 對象
+                const arr = JSON.parse(todoList);
+                // 調用 output 函數顯示 all-data 的資料
+                output(arr);
+            }
+        }
+
+
+        const titles = document.querySelectorAll('.title');
+        const contents = document.querySelectorAll('.content');
+        // console.log(title);
+        // titles.forEach((item) => {
+        //     // console.log(item);
+        //     item.addEventListener('click', () => {
+        //         titles.forEach((h) => {
+        //             h.classList.remove('title-bgc')
+        //         })
+        //         item.classList.add('title-bgc');
+        //         const titleData = item.dataset.title;
+        //         // console.log(item.dataset.title);
+        //         contents.forEach((content) => {
+        //             const contentData = content.dataset.content;
+        //             content.classList.add('hidden')
+        //             if (titleData === contentData) {
+        //                 content.classList.remove('hidden')
+        //             }
+        //             // console.log(content);
+        //         })
+        //     });
+
+        // });
+    </script>
+</body>
+
+</html>

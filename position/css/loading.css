@@ -1,0 +1,190 @@
+@keyframes right {
+  50%, 100% {
+    left: 100%;
+  }
+}
+@keyframes bottom {
+  50%, 100% {
+    top: 100%;
+  }
+}
+@keyframes left {
+  50%, 100% {
+    right: 100%;
+  }
+}
+@keyframes top {
+  50%, 100% {
+    bottom: 100%;
+  }
+}
+@keyframes loading {
+  100% {
+    width: 140px;
+  }
+}
+@keyframes ball-1 {
+  0% {
+    margin-top: 0px;
+  }
+  50% {
+    margin-top: -100px;
+  }
+  100% {
+    margin-bottom: -100px;
+  }
+}
+@keyframes ball-2 {
+  0% {
+    margin-top: 0px;
+  }
+  50% {
+    margin-top: -100px;
+  }
+  100% {
+    margin-bottom: -100px;
+  }
+}
+@keyframes ball-3 {
+  0% {
+    margin-top: 0px;
+  }
+  50% {
+    margin-top: -100px;
+  }
+  100% {
+    margin-bottom: -100px;
+  }
+}
+html, body {
+  margin: 0;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  background-color: rgb(236, 161, 251);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container .box {
+  width: 300px;
+  height: 300px;
+  background-color: rgb(254, 247, 208);
+  position: relative;
+  overflow: hidden;
+}
+.container .box .line {
+  width: 100%;
+  height: 10px;
+  position: absolute;
+}
+.container .box #line1 {
+  background: linear-gradient(to right, transparent, hotpink);
+  left: -100%;
+  top: 0;
+  animation: right 2s linear 0s infinite;
+}
+.container .box .line-2 {
+  width: 10px;
+  height: 100%;
+  position: absolute;
+}
+.container .box #line2 {
+  background: linear-gradient(to bottom, transparent, hotpink);
+  right: 0;
+  top: -100%;
+  animation: bottom 2s linear 0.5s infinite;
+}
+.container .box #line3 {
+  background: linear-gradient(to left, transparent, hotpink);
+  right: -100%;
+  bottom: 0;
+  animation: left 2s linear 1s infinite;
+}
+.container .box #line4 {
+  background: linear-gradient(to top, transparent, hotpink);
+  left: 0;
+  bottom: -100%;
+  animation: top 2s linear 1.5s infinite;
+}
+.container .box h1 {
+  border-right: 2px solid;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  width: 0;
+  position: absolute;
+  margin: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  animation: loading 2.5s linear infinite alternate;
+}
+.container .box .ball {
+  width: 40px;
+  height: 40px;
+  background-color: rgb(0, 85, 255);
+  border-radius: 50%;
+  margin: 0;
+  top: 44%;
+  left: 44%;
+  position: absolute;
+  display: none;
+  animation: ball-1 2s linear 0.5s infinite;
+}
+.container .box #ball-2 {
+  margin-left: 60px;
+  background-color: rgb(254, 3, 128);
+  animation: ball-2 2s linear 0s infinite;
+}
+.container .box #ball-3 {
+  margin-left: -60px;
+  background-color: gold;
+  animation: ball-3 2s linear 1s infinite;
+}
+.container .box:hover {
+  box-shadow: 0 0 600px 100px rgb(234, 249, 121);
+  background-color: rgb(168, 181, 252);
+  border-radius: 10%;
+}
+.container .box:hover .line {
+  width: 100%;
+  height: 10px;
+  position: absolute;
+}
+.container .box:hover #line1 {
+  background: linear-gradient(to right, transparent, rgb(255, 255, 255));
+  left: -100%;
+  top: 0;
+  animation: right 2s linear 0s infinite;
+}
+.container .box:hover .line-2 {
+  width: 10px;
+  height: 100%;
+  position: absolute;
+}
+.container .box:hover #line2 {
+  background: linear-gradient(to bottom, transparent, rgb(255, 255, 255));
+  right: 0;
+  top: -100%;
+  animation: bottom 2s linear 0.5s infinite;
+}
+.container .box:hover #line3 {
+  background: linear-gradient(to left, transparent, rgb(255, 255, 255));
+  right: -100%;
+  bottom: 0;
+  animation: left 2s linear 1s infinite;
+}
+.container .box:hover #line4 {
+  background: linear-gradient(to top, transparent, rgb(255, 255, 255));
+  left: 0;
+  bottom: -100%;
+  animation: top 2s linear 1.5s infinite;
+}
+.container .box:hover h1 {
+  display: none;
+}
+.container .box:hover .ball {
+  display: block;
+}/*# sourceMappingURL=loading.css.map */

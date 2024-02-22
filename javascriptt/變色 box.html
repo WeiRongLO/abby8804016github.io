@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f06060;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+
+        }
+
+        .big-box {
+            width: 520px;
+            height: 520px;
+            background-color: #d3d3d3;
+            margin: auto;
+            padding: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            border-radius: 10px;
+        }
+
+        .box {
+            width: 50%;
+            height: 50%;
+            background-color: rgb(252, 170, 237);
+            border: 5px solid #d3d3d3;
+            border-radius: 10px;
+        }
+
+        .answer {
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="big-box"></div>
+
+    <script>
+        let level = 2;
+        let size = 100 / level;
+
+        let bigBox =document.querySelector('.big-box');
+        let count = 0
+        game();
+        
+
+        function game() {
+                // 清空
+            bigBox.innerHTML = '';
+
+            // 樣板語言(比較方便)
+            // 產生BOX和顏色
+            let color = 
+            `rgb(${Math.floor(Math.random() * 255 + 1)} , ${Math.floor(Math.random() * 255) + 1},${Math.floor(Math.random() * 255) + 1})`;
+
+            for (let i = 0; i < level ** 2; i++){
+                bigBox.innerHTML += `<div class="box" style="width:${size}%; height:${size}% ;background-color:${color}">`;
+            }
+            // 產生解答
+            let randomAnswer = Math.floor(Math.random() * level ** 2);
+            let answerBox = document.querySelector(`.big-box .box:nth-of-type(${randomAnswer})`);
+            answerBox.classList.add("answer");
+
+            // 增加難度(opacity做變動)
+            answerBox.style.opacity = `${0.5 + level * 0.1}`;
+
+            // 互動=>監聽事件
+            let answerBtn = document.querySelector('.answer');
+            answerBtn.addEventListener('click',function (){
+                count++;
+                if(count === level) {
+                level++;
+                size = 100 / level;
+                count = 0;
+            }
+            game();
+            });
+        }
+
+    </script>
+</body>
+</html>

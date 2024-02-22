@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/box.css">
+    <style>
+        .start-game {
+            width: 225px;
+            height: 40px;
+            background-color: rgb(255, 255, 255);
+            border-radius: 3px;
+            box-shadow: 0 0 10px 0px rgb(194, 193, 193);
+        }
+
+        .continue-game {
+            display: none;
+            width: 225px;
+            height: 40px;
+            background-color: rgb(255, 255, 255);
+            border-radius: 3px;
+            box-shadow: 0 0 0px 1px rgb(168, 167, 167);
+        }
+
+        .playgame {
+            display: none;
+            /* padding: 10px; */
+
+        }
+        .block{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        #demo-counter{
+            font-size: larger;
+            font-weight: bolder;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        span{
+            font-weight: bolder;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        .stop-game{
+            width: 225px;
+            height: 40px;
+            background-color: rgb(255, 255, 255);
+            border-radius: 3px;
+            box-shadow: 0 0 10px 0px rgb(194, 193, 193);
+            padding: 10px; 
+        }
+        .quite-game{
+            width: 225px;
+            height: 40px;
+            background-color: rgb(255, 255, 255);
+            border-radius: 3px;
+            box-shadow: 0 0 10px 0px rgb(194, 193, 193);
+            padding: 10px; 
+        }
+
+
+        .hidden {
+            display: none;
+        }
+
+        .show {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="homepage">
+        <div class="logo">
+            <h1>COLOR GAME</h1>
+            <span></span>
+        </div>
+        <button class="start-game">開始遊戲</button>
+        <button class="continue-game">繼續遊戲</button>
+    </div>
+    <div class="playgame">
+        <div class="block">
+            <p id="demo-counter"></p>
+        <span>遊戲中</span>
+        <div class="big-box"></div>
+        <button class="stop-game">暫停遊戲</button>
+        <button class="quite-game">放棄遊戲</button>
+        <div id="demo-counter"></div>
+        </div>
+    </div>
+    <script src="./js/box.js"></script>
+
+    <script>
+        let homepage = document.querySelector('.homepage');
+        let startGame = document.querySelector('.start-game');
+        let playGame = document.querySelector('.playgame');
+        let continueGame = document.querySelector('.continue-game');
+        let stopGame = document.querySelector('.stop-game');
+        let quiteGameBtn = document.querySelector('.quite-game');
+        // 計時器
+        let demoCounter = document.querySelector('#demo-counter');
+        let stopShowCounter = document.querySelector('#stop-show-counter');
+        let showCounter = document.querySelector('#show-counter');
+        let counterInterval;
+        const totalTime = 10;
+        let counter = totalTime;
+        // 設定計時幾秒
+        // let counter = 10;
+
+
+
+        myStartGame();
+        myStopGame();
+        myContinueGame();
+        myQuiteGmae();
+
+        // 開始遊戲
+        function myStartGame() {
+            startGame.addEventListener('click', () => {
+                // 先清空秒數
+                demoCounter.innerHTML = '';
+                homepage.classList.add('hidden');
+                playGame.classList.add('show');
+                counter = 10;
+
+                counterInterval = setInterval(counterTimer, 1000);
+            })
+        }
+        // 暫停遊戲
+        function myStopGame() {
+            stopGame.addEventListener('click', () => {
+                homepage.classList.remove('hidden');
+                playGame.classList.remove('show');
+                continueGame.classList.add('show');
+                // 停止時間
+                counterStop();
+            })
+        }
+        // 繼續遊戲
+        function myContinueGame() {
+            continueGame.addEventListener('click', () => {
+                homepage.classList.add('hidden');
+                playGame.classList.add('show');
+                continueGame.classList.remove('show');
+
+                counterInterval = setInterval(counterTimer, 1000);
+            })
+        }
+        // 放棄遊戲
+        function myQuiteGmae() {
+            quiteGameBtn.addEventListener('click', () => {
+                homepage.classList.remove('hidden');
+                playGame.classList.remove('show');
+                continueGame.classList.remove('show');
+                bigBox.innerHTML = '';
+                counterStop();
+                level = 2;
+                size = 100 / level;
+                bigBox = document.querySelector('.big-box');
+
+                game();
+            })
+        }
+
+        function counterTimer() {
+            if (counter > 0) {
+                console.log('start counter = ', counter);
+                demoCounter.innerHTML = --counter;
+            } else {
+                // 會讓程式一直執行出現alert
+                demoCounter.innerHTML = '';
+                alert('times out! 太爛了吧~');
+                counterStop();
+                console.log('alert counter = ', counter);
+                counter = 10;
+                homepage.classList.remove('hidden');
+                playGame.classList.remove('show');
+                continueGame.classList.remove('show');
+            }
+        }
+        function counterStop() {
+            clearInterval(counterInterval);
+        }
+
+    </script>
+</body>
+
+</html>

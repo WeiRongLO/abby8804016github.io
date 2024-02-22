@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-family: 微黑正體;
+            font-weight: bolder;
+        }
+        .bigbox{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        table,th,td{
+            border: 1px dashed;
+            text-align: center;
+        }
+
+        table th{
+            margin: 0;
+        }
+
+        table{
+            width: 40%;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="bigbox">
+        <h1>BMI計算機</h1>
+        <p>身體質量指數(Body Mass Index，簡稱BMI)是公認用來估計肥胖程度的方式</p>
+        <p>BMI公式=體重(公斤)/身高的平方(公尺)</p>
+
+        <div class="">
+            <span>性別:</span>
+            <input type="radio" name="gender" class="man" id="gender-man"><label for="man">男</label>
+            <input type="radio" name="gender" class="woman" id="gender-woman"><label for="woman">女</label>
+        </div>
+        <p>
+        輸入身高:
+        <input class="tall" type="number" min="100">
+        <span>公分 &nbsp;</span>
+        輸入體重:
+        <input class="kilogram" type="number" min="20">
+        <span>公斤</span>
+        </p>
+        <div>
+            <button class="count">計算</button>
+            <button class="clear">重新填寫</button>
+        </div>
+        <p>結果:
+            <span class="result"></span>
+        </p>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th colspan="3">BMI值</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                <td>男性</td>
+                <td>女性</td>
+            </tr>
+            <tr>
+                <td>體重過輕</td>
+                <td>&lt;20</td>
+                <td>&lt;19</td>
+            </tr>
+            <tr>
+                <td>正常範圍</td>
+                <td>20-25</td>
+                <td>19-25</td>
+            </tr>
+            <tr>
+                <td>體重超重</td>
+                <td>25-30</td>
+                <td>25-30</td>
+            </tr>
+            <tr>
+                <td>肥胖</td>
+                <td>30-40</td>
+                <td>30-40</td>
+            </tr>
+            <tr>
+                <td>病態肥胖</td>
+                <td>&gt;40</td>
+                <td>&gt;40</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        let man=document.querySelector('.man');
+        let woman=document.querySelector('.woman');
+        let tall=document.querySelector('.tall');
+        let kilogram=document.querySelector('.kilogram');
+
+        let countBtn=document.querySelector('.count');
+        let clearBtn=document.querySelector('.clear');
+        let resultBox = document.querySelector('.result');
+
+        clearBtn.addEventListener('click',function(){
+            console.log(tall.value,typeof(tall.value))
+            man.value = '';
+            woman.value = '';
+            tall.value = '';
+            kilogram.value = '';
+            resultBox.innerHTML ='';
+         });
+
+         countBtn.addEventListener('click',function(){
+            let gender = document.querySelector('input[name="gender"]:checked');
+            if (!gender) {
+               alert('性別不知道嗎?');
+               return;
+            } else if(kilogram.value < 20 ){
+                alert('確定這麼瘦嗎?');
+               return;
+            }else if(tall.value < 100 ){
+                alert('小朋友用力吃就好!不要身材焦慮!');
+               return;
+            }else{
+                let result=((kilogram.value * 1 )/ ((tall.value * 1 * 0.01 )*(tall.value * 1 * 0.01) ))
+            console.log(result);
+            resultBox.innerHTML = result.toFixed(2);
+            }
+         });
+         
+    </script>
+</body>
+</html>

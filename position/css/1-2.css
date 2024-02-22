@@ -1,0 +1,26 @@
+.box {
+  width: 500px;
+  height: 500px;
+  background-color: #fab1e0;
+  color: white;
+  font-size: 32px;
+}
+.box .box-1 {
+  width: 200px;
+  height: 200px;
+  background-color: aquamarine;
+  position: relative;
+}
+.box .box-1::after {
+  content: "";
+  width: 100px;
+  height: 100px;
+  background-color: crimson;
+  position: absolute;
+  left: 50px;
+  top: 50px;
+}
+.box img {
+  width: 200px;
+  height: 200px;
+}/*# sourceMappingURL=1-2.css.map */

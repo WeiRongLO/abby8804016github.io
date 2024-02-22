@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 段落 占兩行 -->
+    <p></p>
+    <!-- 表單元素 -->
+    <form action="">
+    </form>
+    <!-- 輸入姓名              必選(填) -->
+    姓名: <input type="text" required>
+    <!-- 預設名子 -->
+    姓名: <input type="text" value="猛獸">
+    <!-- 換行 一行 -->
+    <br>
+    姓名: <input type="text" placeholder="請輸入姓名">
+    <!-- 限制只能打數字 和區間 -->
+    年齡: <input type="number" min="1" max="500">
+                <!-- 打勾的圈圈   空格-->
+    性別:
+     <label for="male">男</label> 
+     <input id="male" type="radio" name="gender">&nbsp;
+     <label for="female">女</label> <input id="female" type="radio" name="gender">
+    <!-- 同一名稱只能單選 -->
+    <label for=""></label>
+    <!-- 手機介面 -->
+    <!-- 複選 -->
+    午餐:
+    牛肉 <input type="checkbox">
+    豬肉 <input type="checkbox">
+    素食 <input type="checkbox">
+    <br>
+    <!-- 選擇 -->
+    <select name="" id="">
+        <option value="" unselected>請選擇</option>
+        <option value="">台中</option>
+        <option value="">南投</option>
+        <option value="">彰化</option>
+    </select>
+    <p>
+    <button type="reset">取消</button>
+    <button type="submit">送出</button>
+</body>
+</html>

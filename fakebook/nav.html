@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nav</title>
+    <style>
+       body{
+        margin: 0;
+        height: 3000px;
+        background-color: beige;
+       }
+       #nav{
+        background-color:palevioletred;
+        width: 100%;
+        height: 100px;
+        position: fixed;
+        /*固定住*/
+        z-index: 10;
+       }
+       #facebook{
+        width: 40px;
+        height: 40px;
+        background-color: aquamarine;
+        position: absolute;
+        bottom: 30%;
+        left: 10px;
+        border-radius: 50%;
+        background-image: url(./pic/svgexport-1.svg);
+        background-size: cover;
+       }
+       #search{
+        width: 40px;
+        height: 40px;
+        background-color:azure;
+        position: absolute;
+        left: 55px;
+        bottom: 30%;
+        /* left: 15%; */
+        border-radius: 50%;
+        background-image: url(./pic/svgexport-3.svg);
+        background-size: cover;
+       }
+       #home{
+        width: 40px;
+        height: 40px;
+        background-color:palevioletred;
+        position: absolute;
+        left: 30%;
+        bottom: 30%;
+        background-image: url(./pic/svgexport-4.svg);
+        background-size: cover;
+       }
+       #video{
+        width: 40px;
+        height: 40px;
+        background-color:palevioletred;
+        position: absolute;
+        left: 45%;
+        bottom: 30%;
+        background-image: url(./pic/svgexport-5.svg);
+        background-size: cover;
+       }
+       #friend{
+        width: 40px;
+        height: 40px;
+        background-color:palevioletred;
+        position: absolute;
+        left: 60%;
+        bottom: 30%;
+        background-image: url(./pic/svgexport-7.svg);
+        background-size: cover;
+       }
+       #game{
+        width: 40px;
+        height: 40px;
+        background-color:palevioletred;
+        position: absolute;
+        left: 75%;
+        bottom: 30%;
+        background-image: url(./pic/svgexport-8.svg);
+        background-size: cover;
+       }
+       #all{
+        background-color:cornflowerblue;
+        width: 80%;
+        height: 1000px;
+        margin: auto;
+      }
+    #banner{
+        background-color: aqua;
+        width: 100%;
+        height: 500px;
+        background-image: url(./v2-5c62265886f1282877acbf72b09f26d7_720w.jpg);
+        /*background-repeat: no-repeat;*/
+        background-size:cover;
+        /*background-size: auto;*/
+        position: relative;
+        background-position: center;
+    }
+    #linedog{
+        background-color:azure;
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        bottom: -50px;
+        left: 100px;
+        border-radius: 50%;
+        background-image: url(./18-1.png);
+        background-size: cover;
+        border: 5px solid cornflowerblue;
+    }
+    #name{
+        font-size: 30px;
+        font-family: '微黑正體';
+        color: white;
+        width: 150px;
+        height: 50px;
+        position: absolute;
+        bottom: -50px;
+        left: 225px;
+    }
+    #add{
+        background-color: blue;
+        border-radius: 10%;
+        font-size: 15px;
+        font-family: '微黑正體';
+        color: white;
+        width: 100px;
+        height: 25px;
+        position: absolute;
+        bottom: -30px;
+        right: 150px;
+        letter-spacing: 6px;
+    }
+    #photo{
+        background-color: antiquewhite;
+        width: 150px;
+        height: 30px;
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        letter-spacing: 6px;
+    }
+    #sns{
+        width: 40px;
+        height: 40px;
+        background-color:palevioletred;
+        position: absolute;
+        right: 120px;
+        bottom: 30%;
+        /* left: 15%; */
+        border-radius: 50%;
+        background-image: url(./pic/svgexport-13.svg);
+        background-size: cover;
+    }
+    #ring{
+        width: 40px;
+        height: 40px;
+        background-color:palevioletred;
+        position: absolute;
+        right: 65px;
+        bottom: 30%;
+        /* left: 15%; */
+        border-radius: 50%;
+        background-image: url(./pic/svgexport-12.svg);
+        background-size: cover;
+    }
+    #myself{
+        width: 40px;
+        height: 40px;
+        background-color:aliceblue;
+        position: absolute;
+        right: 10px;
+        bottom: 30%;
+        /* left: 15%; */
+        border-radius: 50%;
+        background-image: url(./18-1.png);
+        background-size: cover;
+    }
+    </style>
+</head>
+<body>
+    <div id="nav">
+        <div id="facebook"></div>
+        <div id="search"></div>
+        <div id="home"></div>
+        <div id="video"></div>
+        <div id="friend"></div>
+        <div id="game"></div>
+        <div id="sns"></div>
+        <div id="ring"></div>
+        <div id="myself"></div>
+    </div>
+    <div id="all">
+        <div id="banner">
+            <div id="linedog"></div>
+            <div id="add">加好友</div>
+            <div id="name">線條小狗</div>
+            <div id="photo">
+                <div id="camera"></div>編輯封面照片
+            </div>
+        </div>
+    </div>
+</body>
+</html>
